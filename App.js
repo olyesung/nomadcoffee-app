@@ -6,8 +6,8 @@ import { Asset } from "expo-asset";
 import { NavigationContainer } from "@react-navigation/native";
 import { ApolloProvider } from "@apollo/client";
 import client, { isLoggedInVar, tokenVar } from "./apollo";
-import Navigators from "./screens/Navigators";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import RootNav from "./components/nav/RootNav";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -39,7 +39,7 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <Navigators />
+        <RootNav />
       </NavigationContainer>
     </ApolloProvider>
   );

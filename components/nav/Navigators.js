@@ -1,12 +1,13 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Search from "./Search";
-import Profile from "./Profile";
-import Home from "./Home";
+import Search from "../../screens/Search";
+import Profile from "../../screens/Profile";
+import Home from "../../screens/Home";
 import { useReactiveVar } from "@apollo/client";
-import { isLoggedInVar } from "../apollo";
-import LoggedInProfile from "./LoggedInProfile";
-import TabIcon from "../components/nav/TabIcon";
+import { isLoggedInVar } from "../../apollo";
+import LoggedInProfile from "../../screens/LoggedInProfile";
+import TabIcon from "./TabIcon";
+import CreateShop from "./CreateShopNav";
 
 const Tabs = createBottomTabNavigator();
 
@@ -32,6 +33,18 @@ export default function Navigators() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="Add"
+        options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <TabIcon iconName={"camera"} color={color} focused={focused} />
+          ),
+        }}
+      >
+        {(props) =>
+          isLoggedIn ? <CreateShop {...props} /> : <Profile {...props} />
+        }
+      </Tabs.Screen>
       <Tabs.Screen
         name="Profile"
         options={{
